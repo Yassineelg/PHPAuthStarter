@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - PHPAuthStarter</title>
-    <link rel="stylesheet" href="../assets/css/style.css"></head>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
 <body>
 <div class="container">
     <h1>Register</h1>
@@ -25,7 +26,7 @@
             <label for="confirm_password">Confirm Password:</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
         </div>
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn" name="register">Register</button>
     </form>
     <p>Already have an account? <a href="login.php">Login here</a>.</p>
 </div>
