@@ -116,6 +116,9 @@ class User
         $stmt->execute(['email' => $email]);
 
         // Fetch the user data
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Return null if no user was found
+        return $user === false ? null : $user;
     }
 }
