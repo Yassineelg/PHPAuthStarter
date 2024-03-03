@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Register</h1>
-    <form action="create_user.php" method="POST">
+    <form action="../actions/create_user.php" method="POST">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>

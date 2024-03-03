@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Login</h1>
-    <form action="authenticate.php" method="POST">
+    <form action="../actions/authenticate.php" method="POST">
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>

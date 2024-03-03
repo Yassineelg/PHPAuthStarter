@@ -8,20 +8,19 @@ require_once '../classes/User.php';
 $messageClass = "";
 
 // Check if form data is set
-if (isset($_POST['email'], $_POST['password'])) {
+if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_password'])) {
     // Create new Database and User instances
     $db = new Database();
     $user = new User($db);
 
-    // Attempt to authenticate user
-    $authenticatedUser = $user->authenticateUser($_POST['email'], $_POST['password']);
-    if ($authenticatedUser) {
+    // Attempt to create user
+    if ($user->createUser($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_password'])) {
         // Success message
-        $message = "User authenticated successfully!";
+        $message = "User created successfully!";
         $messageClass = "success";
     } else {
         // Failure message
-        $message = "Failed to authenticate user. Please check your inputs.";
+        $message = "Failed to create user. Please check your inputs or try a different email.";
         $messageClass = "error";
     }
 } else {
@@ -36,22 +35,23 @@ if (isset($_POST['email'], $_POST['password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication</title>
+    <title>User Registration</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Authentication Result</h1>
+    <h1>Registration Result</h1>
     <!-- Display message -->
     <p class="<?php echo $messageClass; ?>">
         <?php echo $message; ?>
     </p>
     <div class="navigation">
-        <a href="index.php" class="btn">Home</a>
+        <!-- Navigation links -->
+        <a href="../views/index.php" class="btn">Home</a>
         <?php if ($messageClass == "success"): ?>
-            <a href="register.php" class="btn">Register</a>
+            <a href="../views/login.php" class="btn">Login</a>
         <?php else: ?>
-            <a href="login.php" class="btn">Retry</a>
+            <a href="../views/register.php" class="btn">Retry</a>
         <?php endif; ?>
     </div>
 </div>
