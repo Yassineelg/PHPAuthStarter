@@ -48,7 +48,11 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_p
     <div class="navigation">
         <!-- Navigation links -->
         <a href="index.php" class="btn">Home</a>
-        <a href="login.php" class="btn">Login</a>
+        <?php if ($messageClass == "success"): ?>
+            <a href="login.php" class="btn">Login</a>
+        <?php else: ?>
+            <a href="register.php" class="btn">Retry</a>
+        <?php endif; ?>
     </div>
 </div>
 </body>
