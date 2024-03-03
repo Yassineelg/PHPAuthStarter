@@ -1,15 +1,55 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "phpauthstarter";
+// Include necessary classes
+require_once '../classes/Database.php';
+require_once '../classes/User.php';
 
-try {
-    $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-} catch (PDOException $e) {
-    echo "Connexion to the database failed: " . $e->getMessage();
+// Initialize message class
+$messageClass = "";
+
+// Check if form data is set
+if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_password'])) {
+    // Create new Database and User instances
+    $db = new Database();
+    $user = new User($db);
+
+    // Attempt to create user
+    if ($user->createUser($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_password'])) {
+        // Success message
+        $message = "User created successfully!";
+        $messageClass = "success";
+    } else {
+        // Failure message
+        $message = "Failed to create user. Please check your inputs or try a different email.";
+        $messageClass = "error";
+    }
+} else {
+    // Form not fully filled out
+    $message = "Please fill in all the fields.";
+    $messageClass = "error";
 }
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Registration Result</h1>
+    <!-- Display message -->
+    <p class="<?php echo $messageClass; ?>">
+        <?php echo $message; ?>
+    </p>
+    <div class="navigation">
+        <!-- Navigation links -->
+        <a href="index.php" class="btn">Home</a>
+        <a href="login.php" class="btn">Login</a>
+    </div>
+</div>
+</body>
+</html>
