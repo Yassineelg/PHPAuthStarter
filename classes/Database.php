@@ -1,6 +1,6 @@
 <?php
 
-// Database class
+// The Database class handles the database connection
 class Database
 {
     // Database connection properties
@@ -9,7 +9,11 @@ class Database
     private string $password = "";
     private string $dbname = "phpauthstarter";
 
-    // Connect to the database
+    /**
+     * Establishes a connection to the database
+     *
+     * @return PDO|null Returns a PDO object if the connection is successful, null otherwise
+     */
     public function connect(): ?PDO
     {
         try {
