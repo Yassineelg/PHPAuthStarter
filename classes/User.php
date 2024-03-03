@@ -5,7 +5,7 @@ class User
     private Database $db;
 
     // Define the password hashing algorithm as a constant
-    private const string PASSWORD_ALGO = PASSWORD_ARGON2ID;
+    private const PASSWORD_ALGO = PASSWORD_ARGON2ID;
 
     // Constructor takes a Database object as a dependency
     public function __construct(Database $db)
